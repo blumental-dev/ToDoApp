@@ -4,9 +4,35 @@ import { Todo } from "../../constants";
 
 const TodoListManager: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([
-    { id: 1, text: "Buy milk", completed: false },
-    { id: 2, text: "Do laundry", completed: true },
-    { id: 3, text: "Finish homework", completed: false },
+    {
+      id: 1,
+      text: "Item 1",
+      completed: false,
+      children: [
+        {
+          id: 2,
+          text: "Item 1.1",
+          completed: false,
+          children: [
+            {
+              id: 3,
+              text: "Item 1.1.1",
+              completed: false,
+            },
+            {
+              id: 4,
+              text: "Item 1.1.2",
+              completed: false,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 5,
+      text: "Item 2",
+      completed: false,
+    },
   ]);
 
   const addTodo = (text: string) => {

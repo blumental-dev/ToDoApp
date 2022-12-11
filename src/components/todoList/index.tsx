@@ -9,8 +9,22 @@ type ToDoListProps = {
 export default function ToDoList({ todos, onTodoClick }: ToDoListProps) {
   return (
     <ul>
-      {todos.map((todo) => (
-        <ToDoListItem key={todo.id} item={todo} onClick={onTodoClick} />
+      {todos.map((item, index) => (
+        <li
+          onClick={() => {
+            console.log({ item, index });
+
+            onTodoClick(item.id);
+          }}
+          style={{
+            textDecoration: item.completed ? "line-through" : "none",
+          }}
+        >
+          {item.text}
+          {item.children && (
+            <ToDoList todos={item.children} onTodoClick={onTodoClick} />
+          )}
+        </li>
       ))}
     </ul>
   );
